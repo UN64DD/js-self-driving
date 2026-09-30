@@ -20,6 +20,22 @@ class Graph {
         return false;
     }
 
+    addSegment(seg) {
+        this.segments.push(seg);
+    }
+
+    hasSegment(seg) {
+        return this.segments.some((s) => s.equals(seg));
+    }
+
+    tryAddSegment(seg) {
+        if(seg.p1.equals(seg.p2) || this.hasSegment(seg)) {
+            return false;
+        }
+        this.addSegment(seg);
+        return true;
+    }
+
     draw(ctx) {
         for(const seg of this.segments) {
             seg.draw(ctx)
